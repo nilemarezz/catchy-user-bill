@@ -67,7 +67,7 @@ const BillForm = (props) => {
                   <div style={{ width: 70, height: 70 }} >
                     <img src={item.image_link || imageplaceholder} alt="item" style={{ width: 70, height: 70 }} />
                   </div>
-                  <div style={{ marginLeft: 10 }}>
+                  <div style={{ marginLeft: 10, width: '100%' }}>
                     <p>{item.product_name}</p>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <p>{item.amount} ชิ้น</p>

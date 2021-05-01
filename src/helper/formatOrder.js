@@ -1,4 +1,5 @@
 export const formatOrder = (items) => {
+  console.log(items)
   const data = {
     twitter: items[0].twitter,
     shop: items[0].shop,
