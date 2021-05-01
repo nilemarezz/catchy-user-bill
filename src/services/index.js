@@ -1,9 +1,9 @@
-const apiPath = "http://localhost:5000"
+const apiPath = process.env.REACT_APP_END_POINT
 
 export const services = {
   GET_BILL_BY_ORDER_ID: async (order_id, date, shop) => {
     try {
-      const res = await fetch(`${apiPath}/api/orders/user/${order_id}?date=${date}&shop=${shop}`, {
+      const res = await fetch(`${apiPath}/orders/user/${order_id}?date=${date}&shop=${shop}`, {
         headers: {
           'Content-Type': 'application/json',
         }
