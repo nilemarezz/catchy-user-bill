@@ -6,7 +6,10 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/:order_id" strict>
+        <Route path="/" strict exact>
+          <h1>Hello</h1>
+        </Route>
+        <Route path="/form/:order_id" strict exact>
           <BillForm />
         </Route>
         {/* <Route path="/analyze" strict>
