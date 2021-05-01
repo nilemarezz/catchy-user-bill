@@ -6,10 +6,10 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/" strict exact>
+        <Route path="/" exact>
           <h1>Hello</h1>
         </Route>
-        <Route path="/form/:order_id" strict exact>
+        <Route path="/form/:order_id" exact>
           <BillForm />
         </Route>
         {/* <Route path="/analyze" strict>
