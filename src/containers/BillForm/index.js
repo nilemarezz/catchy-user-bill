@@ -88,7 +88,7 @@ const BillForm = (props) => {
       }
       orderData.item.map(item => dataRes.id.push(item.id))
 
-      const uploadTask = storage.ref(`slip/${order_id + slip.name}`).put(slip);
+      const uploadTask = storage.ref(`slip_payment/${order_id + slip.name}`).put(slip);
       uploadTask.on(
         "state_changed",
         snapshot => {
@@ -102,7 +102,7 @@ const BillForm = (props) => {
         },
         () => {
           storage
-            .ref("slip")
+            .ref("slip_payment")
             .child(order_id + slip.name)
             .getDownloadURL()
             .then(async url => {

@@ -3,11 +3,11 @@ import "firebase/storage"
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  authDomain: "catchy-storage.firebaseapp.com",
   projectId: "catchy-storage",
-  storageBucket: process.env.REACT_APP_BUCKET,
+  storageBucket: "catchy-storage.appspot.com",
   messagingSenderId: "325172537320",
-  appId: "1:325172537320:web:b9828a2447396e31f8e65d"
+  appId: process.env.REACT_APP_APP_ID
 };
 
 firebase.initializeApp(firebaseConfig)
