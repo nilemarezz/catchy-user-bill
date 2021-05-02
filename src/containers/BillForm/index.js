@@ -56,6 +56,7 @@ const BillForm = (props) => {
   const getDetail = async () => {
     setLoading(true)
     const res = await services.GET_BILL_BY_ORDER_ID(order_id, parsed.date, parsed.shop)
+    console.log(res)
     if (res && res.success) {
       // setData(formatOrder(res.data))
       setOrderData(formatOrder(res.data))
@@ -98,7 +99,9 @@ const BillForm = (props) => {
           console.log(progress);
         },
         error => {
-          console.log(error);
+          notification["error"]({
+            message: 'Upload image fail '
+          });
         },
         () => {
           storage
@@ -108,9 +111,13 @@ const BillForm = (props) => {
             .then(async url => {
               dataRes.slip_link = url;
               const res = await services.PATCH_BILL(order_id, dataRes)
-              console.log(res)
               if (res && res.success) {
                 props.history.push({ pathname: `/success/${order_id}`, search: `?shop=${parsed.shop}`, state: { image: url, twitter: orderData.twitter } })
+              } else {
+                notification["error"]({
+                  message: 'Submit data fail'
+                });
+                setSubmitLoading(false)
               }
             });
         }
@@ -147,7 +154,7 @@ const BillForm = (props) => {
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100%', maxWidth: 350, marginTop: 10 }}>
           <Input prefix={<TwitterOutlined />} placeholder="@twitter" defaultValue={orderData.twitter} disabled />
           <p style={{ marginTop: 10 }}>รายการสินค้า</p>
-          <div style={{ border: '1px solid grey', paddingTop: 10, paddingLeft: 10, paddingRight: 10, maxHeight: 300, overflow: 'scroll', boxShadow: "inset 0 0 2px lightgrey" }}>
+          <div style={{ border: '1px solid grey', paddingTop: 10, paddingLeft: 10, paddingRight: 10, maxHeight: 300, overflow: 'scroll', boxShadow: "inset 0 0 2px lightgrey", width: '100%' }}>
             {orderData.item.map(item => {
               return (
                 <div style={{ padding: 10, display: 'flex', flexDirection: 'row', alignItems: 'center', border: '1px solid lightgrey', width: '100%', marginBottom: 10 }}>
