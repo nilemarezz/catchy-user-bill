@@ -1,4 +1,5 @@
 export const formatOrder = (items) => {
+  console.log(items)
   const data = {
     twitter: items[0].twitter,
     shop: items[0].shop,
@@ -11,6 +12,7 @@ export const formatOrder = (items) => {
   }
   items.map(item => {
     data.pay_amount = parseFloat(data.pay_amount) + parseFloat(item.pay_amount) + parseFloat(item.shipping_price)
+    data.shipping_price = parseFloat(data.shipping_price) + parseFloat(item.shipping_price)
     data.item.push({
       id: item.id,
       product_name: item.product_name,
