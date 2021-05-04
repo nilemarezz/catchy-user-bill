@@ -8,7 +8,9 @@ export const formatOrder = (items) => {
     payment_method: items[0].payment_method,
     item: [],
     pay_amount: 0,
-    shipping_price: 0
+    shipping_price: 0,
+    address: items[0].address,
+    slip_link: items[0].slip_link
   }
   items.map(item => {
     data.pay_amount = parseFloat(data.pay_amount) + parseFloat(item.pay_amount) + parseFloat(item.shipping_price)

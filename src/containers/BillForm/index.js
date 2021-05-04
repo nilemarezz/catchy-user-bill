@@ -58,9 +58,14 @@ const BillForm = (props) => {
     const res = await services.GET_BILL_BY_ORDER_ID(order_id, parsed.date, parsed.shop)
     console.log(res)
     if (res && res.success) {
+      const data = formatOrder(res.data)
+      if (data.address || data.slip_link) {
+        props.history.push({ pathname: `/already/${order_id}`, search: `?shop=${parsed.shop}`, state: { twitter: data.twitter } })
+      } else {
+        setOrderData(formatOrder(res.data))
+        setLoading(false)
+      }
       // setData(formatOrder(res.data))
-      setOrderData(formatOrder(res.data))
-      setLoading(false)
     } else {
       console.log('error')
     }
@@ -217,7 +222,7 @@ const BillForm = (props) => {
             <Row style={{ alignItems: "center" }}>
               <Col sm={12} xs={12}>
                 <p style={{ paddingTop: 15 }}>ยอดทั้งหมด : <span style={{ fontWeight: 'bold', textDecoration: 'underline' }}>{numberWithCommas(orderData.pay_amount)} ฿</span></p>
-                <input type="file" style={{ display: 'none' }} ref={upload} onChange={e => handleSelectSlip(e.target.files)} />
+                <input type="file" style={{ display: 'none' }} accept="image/*" ref={upload} onChange={e => handleSelectSlip(e.target.files)} />
               </Col>
               <Col sm={12} xs={12}>
                 <Button style={{ width: '100%', backgroundColor: "#eb2f96", color: 'white' }} onClick={() => upload.current.click()} disabled={submitLoading}>อัพโหลดสลิป</Button>

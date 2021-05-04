@@ -1,5 +1,5 @@
 const apiPath = process.env.REACT_APP_END_POINT
-// const apiPath = 'http://localhost:5000/api'
+// const apiPath = 'http://localhost:5000/api/'
 
 export const services = {
   GET_BILL_BY_ORDER_ID: async (order_id, date, shop) => {
