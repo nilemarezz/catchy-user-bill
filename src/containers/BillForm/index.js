@@ -184,7 +184,7 @@ const BillForm = (props) => {
             form={form}
           >
             <Form.Item
-              label="ที่อยู่"
+              label="=ชื่อ,ที่อยู่ และ เบอร์โทร"
               name="address"
             >
               <TextArea
